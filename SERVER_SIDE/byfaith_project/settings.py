@@ -63,6 +63,8 @@ INSTALLED_APPS = [
     # 3rd-party
     'corsheaders',
     'rest_framework',
+    'cloudinary',
+    'cloudinary_storage',
 
     # Local apps
     'session_app',
@@ -145,7 +147,10 @@ TEMPLATES = [
 
 # ───── STATIC & MEDIA ──────────────────────────────────────────────────────
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+if DEBUG: 
+    STATIC_ROOT = BASE_DIR / 'staticfiles'
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -180,3 +185,6 @@ CLOUDINARY_STORAGE = {
     'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
 }
+
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/dist')]
