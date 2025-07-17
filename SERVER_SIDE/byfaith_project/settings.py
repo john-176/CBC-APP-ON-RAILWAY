@@ -36,6 +36,8 @@ SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_SAMESITE = 'Lax'
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 if DEBUG:
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
@@ -50,6 +52,7 @@ else:
     SESSION_ENGINE = "django.contrib.sessions.backends.db"
     SESSION_EXPIRE_AT_BROWSER_CLOSE = True
     SESSION_COOKIE_AGE = int(os.getenv("SESSION_COOKIE_AGE", 1209600))
+
 
 # ───── INSTALLED APPS ──────────────────────────────────────────────────────
 INSTALLED_APPS = [
@@ -189,3 +192,5 @@ CLOUDINARY_STORAGE = {
 '''
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/dist')]
+
+
