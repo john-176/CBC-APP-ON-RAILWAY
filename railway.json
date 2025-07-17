@@ -1,0 +1,14 @@
+{
+  "build": {
+    "root": "SERVER_SIDE",
+    "buildCommand": "pip install -r requirements.txt && cd ../CLIENT_SIDE && npm install && npm run build && cd ../SERVER_SIDE && python manage.py collectstatic --noinput"
+  },
+  "deploy": {
+    "startCommand": "gunicorn byfaith_project.wsgi",
+    "healthcheckPath": "/api/health/",
+    "restartPolicy": {
+      "condition": "on-failure",
+      "maxRetries": 10
+    }
+  }
+}

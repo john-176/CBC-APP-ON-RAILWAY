@@ -20,8 +20,19 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include, re_path
+from django.http import JsonResponse
+
+def healthcheck(request):
+    return JsonResponse({"status": "ok"})
 
 urlpatterns = [
+    # Your existing URLs...
+    path('api/health/', healthcheck),
+]
+
+
+urlpatterns = [
+    path('api/health/', healthcheck),
     path('admin/', admin.site.urls),
     path('api/', include('session_app.urls')),
     path('api/', include('content_app.urls')),
