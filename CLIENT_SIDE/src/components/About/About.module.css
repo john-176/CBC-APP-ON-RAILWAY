@@ -1,0 +1,154 @@
+.aboutSection {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 3.5rem 2rem;
+  background: linear-gradient(145deg, #11171d, #15919a);
+  border-radius: 20px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  line-height: 1.75;
+}
+
+.aboutContent {
+  text-align: center;
+  color: #f9f9f9;
+}
+
+.aboutContent h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.8rem;
+  color: #c16713;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 1px;
+}
+
+.aboutContent h2::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, #3a7bd5, #00d2ff);
+  bottom: -10px;
+  left: 20%;
+  border-radius: 2px;
+}
+
+.aboutText {
+  max-width: 850px;
+  margin: 0 auto 2.5rem;
+  text-align: left;
+}
+
+.aboutText p {
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+  color: #ecf0f1;
+}
+
+.highlight {
+  font-weight: 600;
+  color: #e8f0ff;
+  font-size: 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.75rem 1rem;
+  border-left: 4px solid #c16713;
+  border-right: 4px solid #c16713;
+  border-radius: 6px;
+  
+}
+
+.connectSection {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.connectSection h3 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.connectSubtitle {
+  color: #dfe6e9;
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.socialLink {
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  color: white;
+  background-color: var(--bg-color);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.socialLink:hover {
+  background-color: var(--hover-color);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.socialIcon {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .aboutSection {
+    margin: 2.5rem auto;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .aboutContent h2 {
+    font-size: 2.1rem;
+  }
+
+  .aboutText p {
+    font-size: 1.05rem;
+    text-align: center;
+  }
+
+  .highlight {
+    font-size: 1.15rem;
+    text-align: center;
+  }
+
+  .socialLink {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutSection {
+    padding: 2rem 1rem;
+  }
+
+  .aboutContent h2 {
+    font-size: 1.9rem;
+  }
+
+  .socialLinks {
+    gap: 1rem;
+  }
+
+  .socialLink {
+    padding: 0.6rem 1rem;
+  }
+}

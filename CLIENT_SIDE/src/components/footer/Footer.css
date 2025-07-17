@@ -1,0 +1,124 @@
+.footer {
+  background: linear-gradient(135deg, #08c4a5, #023a4d);
+  color: white;
+  padding: 2rem 1.5rem;
+  font-size: 0.95rem;
+}
+
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.footer-copy {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: rgb(255, 255, 255);
+}
+
+.footer-copy a {
+  color: #01f7ff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  
+}
+
+.footer-nav {
+  width: 100%;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.footer-links li {
+  margin: 0;
+}
+
+.footer-links a {
+  color: #e0e40a;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #16f7ff;
+  animation: shake 0.5s ease;
+}
+
+/* Font Awesome Social Icons */
+.social-icons {
+  display: flex;
+  justify-content: center; /* This centers horizontally */
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.social-icons a {
+  font-size: 1.5rem;
+  color: white; /* fallback color */
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+  color: #16f7ff;
+}
+
+/* Optional: Brand colors */
+.social-icons a:nth-child(1) i {
+  color: #1da1f2; /* Twitter */
+}
+.social-icons a:nth-child(2) i {
+  color: #023374; /* Facebook */
+}
+.social-icons a:nth-child(3) i {
+  color: #9d0235; /* Instagram */
+}
+
+
+
+
+/* Simple shake animation for hover */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .footer {
+    width: fit-content;
+  }
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .social-icons {
+    flex-wrap: wrap;
+  }
+  .footer-copy{
+    font-size: auto;
+    padding-right: 24px;
+  }
+

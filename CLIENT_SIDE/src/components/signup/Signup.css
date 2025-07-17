@@ -1,0 +1,88 @@
+.signup-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #dcdddd;
+}
+
+.signup-container {
+  background-color: white;
+  padding: 2rem 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.signup-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.input-wrapper,
+.password-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.signup-input {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px; /* space for eye icon */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.eye-toggle-button {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #555;
+}
+
+.signup-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.signup-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.signup-status {
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+.signup-status.success {
+  color: green;
+  
+}
+
+.signup-status.error {
+  color: red;
+}
+
+
+@media (max-width: 768px) {
+  .signup-wrapper {
+    padding: 1rem;
+  }
+}
+

@@ -1,0 +1,149 @@
+.announcementSection {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 1rem 1rem;
+  background: #824602;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.announcementTitle {
+  text-align: center;
+  font-size: 2rem;
+  color: #ffffff;
+  padding-top: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+
+.announcementEmpty {
+  text-align: center;
+  color: #ffffff;
+  font-style: italic;
+  margin: 2rem 0;
+}
+
+
+.announcementList {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.announcementCard {
+  background: #ffffff;
+  border-left: 6px solid #3f51b5;
+  padding: 1.5rem 1rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.announcementCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.announcementCard h3 {
+  margin-top: 0;
+  color: #3f51b5;
+  font-size: 1.2rem;
+}
+
+.announcementCard p {
+  margin: 0.75rem 0;
+  color: #444;
+  font-size: 1rem;
+}
+
+.announcementDate {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #757575;
+  font-style: italic;
+}
+
+/* Form Styling */
+.announcementForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  background: #f1f3f4;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.announcementForm input,
+.announcementForm textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  width: 100%;
+  resize: vertical;
+}
+
+.announcementForm input:focus,
+.announcementForm textarea:focus {
+  outline: none;
+  border-color: #3f51b5;
+  box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.2);
+}
+
+.announcementForm button {
+  align-self: flex-start;
+  background-color: #037405;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.announcementForm button:hover {
+  background-color: #2c3c91;
+}
+
+/* Delete Button */
+.deleteBtn {
+  margin-top: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  background-color: #e53535;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.deleteBtn:hover {
+  background-color: #c62828;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .announcementTitle {
+    font-size: 1.5rem;
+  }
+
+  .announcementCard {
+    padding: 1rem;
+  }
+
+  .announcementCard h3 {
+    font-size: 1rem;
+  }
+
+  .announcementCard p {
+    font-size: 0.95rem;
+  }
+}
+

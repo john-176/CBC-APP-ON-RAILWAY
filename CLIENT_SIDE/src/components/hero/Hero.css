@@ -1,0 +1,92 @@
+.home {
+  padding: 0px;
+  width: 100%;
+  overflow-x: hidden;
+  font-size: smaller;
+  background-color: rgb(255, 255, 255);
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  min-height: 100vh;
+  width: 100%;
+  background-color: rgb(226, 110, 2);
+}
+
+.hero-left {
+  flex: 1;
+  padding: 3rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.65), rgba(0, 64, 64, 0.8));
+  clip-path: ellipse(100% 100% at 0% 50%);
+  transition: clip-path 0.5s ease-in-out;
+  z-index: 2;
+  position: relative;
+}
+
+
+
+.school-moto {
+  max-width: 500px;
+}
+
+.hero-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.home h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.home-section h2 {
+  text-decoration: underline;
+  font-size: 1.4rem;
+  margin-top: 1.5rem;
+  color: #c8b400;
+}
+
+.home p {
+  font-size: 16px;
+  color: lab(100% 0.01 -0.01);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+
+/* Responsive for tablets and phones */
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
+  }
+
+  .hero-left,
+  .hero-right {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-right img {
+    max-height: 300px;
+  }
+
+  .home h1 {
+    font-size: 1.6rem;
+  }
+
+  .home p {
+    font-size: 14px;
+  }
+
+  .home-section h2 {
+    font-size: 1.2rem;
+  }
+}

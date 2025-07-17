@@ -1,0 +1,346 @@
+.timetable-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ccc;
+  background-color: #fbf4f4;
+  color: #05968a;
+  overflow-x: visible;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: fit-content; /* allow background to expand to fit content */
+}
+
+.timetable-header {
+  position: relative;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  flex-wrap: wrap; /* allows wrapping on small screens */
+}
+
+.timetable-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+.home-button{
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+}
+.home-button button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(3, 165, 52);
+  border: none;
+  border-radius: 4px;
+}
+
+.edit-info-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0rem;
+  color: #d9352f;
+  font-size: 0.9rem;
+  font-style: italic;
+  animation: fadeInOut 3s ease-in-out;
+  padding-bottom: 6px;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
+
+
+.home-button a {
+  text-decoration: none;
+}
+
+
+.timetable-container h2 {
+  margin-top: 0;
+  text-align: center;
+  color: #05968a;
+}
+
+  .clock-div{
+    display: flex;
+    margin-top: -45px;
+
+  }
+
+  .print-btn {
+    cursor: pointer;
+    margin-left: 0.3rem;
+    color: rgb(177, 0, 145);
+  }
+
+/* Section block for each group or table sides*/
+.section-block {
+  margin-top: 2rem;
+  border-left: 9px solid #05968a;
+  border-right: 9px solid #05968a;
+  border-radius: 8px;
+  width: auto;
+  background-color: rgba(159, 159, 159, 0.212);
+}
+
+.section-block h4 {
+  color: #007b75;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline;
+  font-size: 1.2em;
+  margin-bottom: 12px;
+  padding-left: 4px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+/* Day block (Monday, Tuesday, etc.) */
+.day-block {
+  margin-bottom: 3rem;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+/* Main timetable table */
+.timetable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-top: 1rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  display: block;
+}
+
+.timetable th,
+.timetable td {
+  border: 1px solid #030303;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.timetable th {
+  background-color: #05968a;
+  color: white;
+  font-weight: bold;
+}
+
+.level-name {
+  font-weight: bold;
+  background-color: #259773;
+  color: white;
+}
+
+/* Diagonal "TIME/LEVEL" header */
+.diagonal-header {
+  position: relative;
+  min-width: 120px;
+  width: 120px;
+  height: 60px;
+  padding: 0;
+  background: linear-gradient(to top right, #0eaa9d 49.9%, rgb(255, 255, 255) 50.1%);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.diagonal-label {
+  position: absolute;
+  font-size: 12px;
+  font-weight: bold;
+  color: #18b7d3;
+  padding: 4px;
+  z-index: 2;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.top-left {
+  top: 12px;
+  left: 75px;
+  color: #a609a9;
+}
+
+.bottom-right {
+  bottom: 12px;
+  right: 75px;
+  color: white;
+}
+
+.timetable th.diagonal-header {
+  background: linear-gradient(to top right, #11a195 49.9%, white 50.1%) !important;
+  position: relative;
+  z-index: 1;
+}
+
+.timetable tbody tr:nth-child(4n + 2),
+.timetable tbody tr:nth-child(4n + 3),
+.timetable tbody tr:nth-child(4n + 4) {
+  background-color: #f8f8f8;
+}
+
+/* Popup styling (if used) */
+.popup {
+  background: #eee;
+  padding: 1rem;
+  border: 1px solid #999;
+  margin-top: 1rem;
+  border-radius: 6px;
+}
+
+.timetable td:first-child, .timetable th:first-child {
+  background: #ffffff;
+  color: #222;
+  font-weight: bold;
+  letter-spacing: 0.1px;
+}
+
+
+/* Buttons styling */
+.action-buttons {
+  display: flex;
+  justify-content:flex-end;
+  gap: 10px;
+}
+
+.action-buttons button {
+  border: none;
+  padding: 8px 8px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.action-buttons button:hover {
+  background-color: #047d71;
+  transform: scale(1.03);
+}
+
+.action-buttons button:active {
+  transform: scale(0.97);
+  background-color: #03695e;
+}
+
+.action-buttons button:last-child {
+  background-color: #940a8d;
+  color: #ffffff;
+  margin-right: 8px;
+}
+
+.action-buttons button:last-child:hover {
+  background-color: #0b9388;
+}
+
+.current-day {
+  color: #960f74 ! important;
+  font-style: italic;
+  font-weight: bold;
+}
+
+
+.current-session {
+  background: #ffe066 !important;
+  font-style: italic;
+  font-weight:lighter;
+  color: #ff05b0;
+  font-style: italic;
+}
+
+@media (max-width: 1200px) {
+  .timetable-container {
+    padding: 8px 2px;
+  }
+  .section-block {
+    padding: 0.5rem;
+  }
+  .timetable th, .timetable td {
+    padding: 6px 2px;
+    font-size: 0.9em;
+  }
+  .diagonal-header {
+    min-width: 70px;
+    width: 70px;
+    height: 40px;
+  }
+  .diagonal-label.top-left {
+    left: px;
+    top: 6px;
+  }
+  .diagonal-label.bottom-right {
+    right: 30px;
+    bottom: 2px;
+  }
+}
+
+@media (max-width: 600px) {
+  .timetable-container {
+    padding: 2px 0;
+    align-items: center;
+  }
+  .home-button{
+    position: absolute;
+    top: 90px;
+    right: -2rem;
+    transform: translateY(-50%);
+  }
+  .section-block {
+    padding: 0.1rem;
+  }
+  .timetable th, .timetable td {
+    font-size: 0.7em;
+    padding: 2px 1px;
+  }
+  .diagonal-header {
+    min-width: 40px;
+    width: 40px;
+    height: 28px;
+  }
+  .diagonal-label.top-left {
+    left: 10px;
+    top: 2px;
+    font-size: 9px;
+  }
+  .diagonal-label.bottom-right {
+    right: 10px;
+    bottom: 0px;
+    font-size: 9px;
+  }
+  .day-block {
+    font-size: 1em;
+    padding: 2px 0 8px 0;
+  }
+  .clock-div{
+    display: flex;
+    margin-left: 25%;
+    margin-top: 12px;
+  }
+  .action-buttons{
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Print styling */
+@media print{
+  .no-print{
+    display: none ! important; 
+  }
+}

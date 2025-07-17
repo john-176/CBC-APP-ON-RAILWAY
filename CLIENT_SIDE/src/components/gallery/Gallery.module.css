@@ -1,0 +1,152 @@
+.galleryContainer {
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: #e1dfdf;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #1a73e8;
+  text-transform: uppercase;
+}
+
+.section {
+  margin-top: 3rem;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.youtubeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.youtubeCard {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.youtubeIframe {
+  width: 100%;
+  height: 200px;
+  border-radius: 4px;
+  border: none;
+}
+
+.videoTitle {
+  margin-top: 8px;
+  font-weight: bold;
+  color: #444;
+}
+
+.noVideos {
+  color: #777;
+  text-align: center;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+.form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form input {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.addButton {
+  background-color: #1a73e8;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  background-color: #1666c1;
+}
+
+.deleteButton {
+  margin: 8px;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  background-color: #c62828;
+}
+
+.paginationWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  padding: 16px;
+  background-color: #fafafa;
+  border-top: 1px solid #eee;
+  border-radius: 8px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.pageControls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pageButton {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.pageButton:hover:not(:disabled) {
+  background-color: #155db6;
+}
+
+.pageButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-size: 15px;
+  font-weight: 500;
+  color: #444;
+}
+
+@media (max-width: 768px) {
+  .youtubeGrid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
