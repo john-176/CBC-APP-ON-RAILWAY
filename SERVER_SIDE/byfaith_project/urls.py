@@ -21,14 +21,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include, re_path
 from django.http import JsonResponse
+from django.views.generic import TemplateView
 
 def healthcheck(request):
     return JsonResponse({"status": "ok"})
 
-urlpatterns = [
-    # Your existing URLs...
-    path('api/health/', healthcheck),
-]
+
 
 
 urlpatterns = [
@@ -37,4 +35,6 @@ urlpatterns = [
     path('api/', include('session_app.urls')),
     path('api/', include('content_app.urls')),
     path('api/', include('timetable_app.urls')),
+        # Catch-all for React frontend routes
+    re_path(r'^(?!api/|admin/).*$', TemplateView.as_view(template_name="index.html")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
