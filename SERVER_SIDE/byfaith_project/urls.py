@@ -26,15 +26,16 @@ from django.views.generic import TemplateView
 def healthcheck(request):
     return JsonResponse({"status": "ok"})
 
-
-
-
 urlpatterns = [
-    path('api/health/', healthcheck),
     path('admin/', admin.site.urls),
+    path('api/health/', healthcheck),
     path('api/', include('session_app.urls')),
     path('api/', include('content_app.urls')),
     path('api/', include('timetable_app.urls')),
-        # Catch-all for React frontend routes
-    re_path(r'^(?!api/|admin/).*$', TemplateView.as_view(template_name="index.html")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    # React frontend catch-all (ignore admin and api)
+    re_path(r'^(?!admin/|api/).*$', TemplateView.as_view(template_name="index.html")), #re path using negative lookahead
+]
+
+# Serve media files
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
