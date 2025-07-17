@@ -34,7 +34,7 @@ urlpatterns = [
     path('api/', include('timetable_app.urls')),
 
     # React frontend catch-all (ignore admin and api)
-    re_path(r'^(?!admin/|api/).*$', TemplateView.as_view(template_name="index.html")), #re path using negative lookahead
+    re_path(r'^(?!admin/|).*$', TemplateView.as_view(template_name="index.html")), #re path using negative lookahead
 ]
 
 # Serve media files
