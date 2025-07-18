@@ -26,7 +26,7 @@ from django.views.generic import View
 from django.shortcuts import render
 
 
-
+'''
 #ensure_csrf_cookie
 @ensure_csrf_cookie
 def get_csrf(request):
@@ -38,6 +38,23 @@ def check_auth_view(request):
     if request.user.is_authenticated:
         return JsonResponse({"user:": request.user.username})
     return JsonResponse({"error": "Not authenticated"}, status=403)
+'''
+
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+
+class AuthCheckView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({
+            "username": request.user.username,
+            "is_staff": request.user.is_staff,
+            "is_superuser": request.user.is_superuser,
+        })
+
 
 
 #Login
