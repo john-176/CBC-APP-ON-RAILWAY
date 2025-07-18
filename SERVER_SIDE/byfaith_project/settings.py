@@ -32,11 +32,11 @@ CSRF_TRUSTED_ORIGINS = (
 CORS_ALLOW_CREDENTIALS = True
 
 # ───── COOKIE & SESSION SETTINGS ───────────────────────────────────────────
-SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_HTTPONLY = False
+SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_SAMESITE = 'Lax'
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 if DEBUG:
     SESSION_COOKIE_SECURE = False
@@ -68,13 +68,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'cloudinary_storage',
     'cloudinary',
-    'whitenoise.runserver_nostatic',
+    #'whitenoise.runserver_nostatic',
 
     # Local apps
     'session_app',
     'timetable_app',
     'content_app',
-    'frontend',
 ]
 
 # ───── MIDDLEWARE ──────────────────────────────────────────────────────────
@@ -95,8 +94,6 @@ ROOT_URLCONF = 'byfaith_project.urls'
 WSGI_APPLICATION = 'byfaith_project.wsgi.application'
 
 # ───── DATABASE (Neon.tech) ───────────────────────────────────────────────
-
-DEBUG = os.getenv("DEBUG", "True") == "True"
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
@@ -138,9 +135,8 @@ USE_TZ = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # This lets Django load React's index.html
-        #'DIRS': [BASE_DIR / 'static/dist'],
-        'APP_DIRS': True,
+        'DIRS': [],  # Leave this empty unless you have custom Django templates
+        'APP_DIRS': True,  # This must be True to load Django admin templates
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
@@ -150,6 +146,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 # ───── STATIC & MEDIA ──────────────────────────────────────────────────────
 '''

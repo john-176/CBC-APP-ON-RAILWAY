@@ -21,7 +21,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include, re_path
 from django.http import JsonResponse
-from django.views.generic import TemplateView
 
 def healthcheck(request):
     return JsonResponse({"status": "ok"})
@@ -32,10 +31,10 @@ urlpatterns = [
     path('api/', include('session_app.urls')),
     path('api/', include('content_app.urls')),
     path('api/', include('timetable_app.urls')),
-    path('', include('frontend.urls')),
+    #path('', include('frontend.urls')),
 
     # React frontend catch-all (ignore admin and api)
-    re_path(r'^(?!api/|admin/).*$', TemplateView.as_view(template_name="index.html")),
+    #re_path(r'^(?!api/|admin/).*$', TemplateView.as_view(template_name="index.html")),
 ]
 
 # Serve media files
