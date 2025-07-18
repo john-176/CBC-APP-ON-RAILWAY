@@ -135,8 +135,8 @@ USE_TZ = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # Leave this empty unless you have custom Django templates
-        'APP_DIRS': True,  # This must be True to load Django admin templates
+        'DIRS': [],
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
@@ -194,9 +194,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ───── RENDER SPECIFIC ─────────────────────────────────────────────────────
 # Disable collectstatic if not needed
+'''
 if os.getenv("RENDER") == "true":
     os.environ["DISABLE_COLLECTSTATIC"] = "1"
-
+'''
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
@@ -210,12 +211,10 @@ CLOUDINARY_STORAGE = {
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-'''
+
 if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-'''
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
     # settings.py
