@@ -68,11 +68,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'cloudinary_storage',
     'cloudinary',
+    'whitenoise.runserver_nostatic',
 
     # Local apps
     'session_app',
     'timetable_app',
     'content_app',
+    'frontend',
 ]
 
 # ───── MIDDLEWARE ──────────────────────────────────────────────────────────
@@ -136,7 +138,7 @@ USE_TZ = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'static')],  # This lets Django load React's index.html
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # This lets Django load React's index.html
         #'DIRS': [BASE_DIR / 'static/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -150,11 +152,15 @@ TEMPLATES = [
 ]
 
 # ───── STATIC & MEDIA ──────────────────────────────────────────────────────
+'''
 STATIC_URL = '/static/'
 if DEBUG: 
     STATIC_ROOT = BASE_DIR / 'staticfiles'
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+'''
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -194,4 +200,9 @@ CLOUDINARY_STORAGE = {
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+'''
+if not DEBUG:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+'''
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

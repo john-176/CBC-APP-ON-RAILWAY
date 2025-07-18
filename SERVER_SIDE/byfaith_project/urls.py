@@ -32,6 +32,7 @@ urlpatterns = [
     path('api/', include('session_app.urls')),
     path('api/', include('content_app.urls')),
     path('api/', include('timetable_app.urls')),
+    path('', include('frontend.urls')),
 
     # React frontend catch-all (ignore admin and api)
     re_path(r'^(?!api/|admin/).*$', TemplateView.as_view(template_name="index.html")),

@@ -1,0 +1,23 @@
+{
+  "index.html": {
+    "file": "assets/index-D_-hlV4V.js",
+    "name": "index",
+    "src": "index.html",
+    "isEntry": true,
+    "css": [
+      "assets/index-DZZb3eX9.css"
+    ],
+    "assets": [
+      "assets/herobg-vIRksP8s.jpg",
+      "assets/jsslogo-Ci7gwOmR.jpg"
+    ]
+  },
+  "src/assets/herobg.jpg": {
+    "file": "assets/herobg-vIRksP8s.jpg",
+    "src": "src/assets/herobg.jpg"
+  },
+  "src/assets/jsslogo.jpg": {
+    "file": "assets/jsslogo-Ci7gwOmR.jpg",
+    "src": "src/assets/jsslogo.jpg"
+  }
+}
