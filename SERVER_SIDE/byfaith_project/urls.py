@@ -22,11 +22,22 @@ from django.conf.urls.static import static
 from django.urls import path, include, re_path
 from django.http import JsonResponse
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 def healthcheck(request):
     return JsonResponse({"status": "ok"})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    #jwt
+        # JWT Auth endpoints
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    
     path('api/health/', healthcheck),
     path('api/', include('session_app.urls')),
     path('api/', include('content_app.urls')),
