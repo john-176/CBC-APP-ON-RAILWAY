@@ -5,7 +5,6 @@ from . import views
 from .views import activate_account, confirm_password_reset, request_password_reset
 
 urlpatterns = [
-    path('csrf/', views.get_csrf),
     path('auth-check/', AuthCheckView.as_view(), name='auth-check'),
     path('login/', views.login_view),
     path('logout/', views.logout_view),
