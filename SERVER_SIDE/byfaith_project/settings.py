@@ -136,7 +136,8 @@ USE_TZ = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'static/dist'],
+        'DIRS': [os.path.join(BASE_DIR, 'static')],  # This lets Django load React's index.html
+        #'DIRS': [BASE_DIR / 'static/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -191,6 +192,6 @@ CLOUDINARY_STORAGE = {
 }
 '''
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/dist')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
