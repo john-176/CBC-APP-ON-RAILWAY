@@ -33,7 +33,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 # ───── COOKIE & SESSION SETTINGS ───────────────────────────────────────────
 SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SAMESITE = 'Lax'
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -206,3 +206,27 @@ if not DEBUG:
 '''
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+    # settings.py
+CORS_ALLOW_METHODS = [
+        "DELETE",
+        "GET",
+        "OPTIONS",
+        "POST",
+        "PUT",
+    ]
+
+CORS_ALLOW_HEADERS = [
+        "accept",
+        "accept-encoding",
+        "authorization",
+        "content-type",
+        "dnt",
+        "origin",
+        "user-agent",
+        "x-csrftoken",
+        "x-requested-with",
+        "Access-Control-Allow-Origin",
+        "x-auth-token",
+    ]
