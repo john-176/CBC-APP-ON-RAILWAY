@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { timetableAPI, currentUserChecker } from '../../api';
+import { timetableAPI } from '../../api';
 import DigitalClock from './DigitalClock';
 import './Timetable.css';
+import { useAuth } from "../../AuthContext"; // ✅ Add this import at the top
 
 const categories = [
   {
@@ -135,22 +136,12 @@ const Timetable = () => {
   const [timetables, setTimetables] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [isStaff, setIsStaff] = useState(false);
   const [showEditDeniedMsg, setShowEditDeniedMsg] = useState(false);
 
   const currentPeriod = useMemo(() => getCurrentPeriod(categories[0].periods, currentTime), [currentTime]);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await currentUserChecker.getCurrentUser();
-        setIsStaff(response.data.is_staff || response.data.is_superuser);
-      } catch (err) {
-        setIsStaff(false); // Default to false if not logged in
-      }
-    };
-    fetchUser();
-  }, []);
+  const { user } = useAuth();
+  const isStaff = user?.is_staff || user?.is_superuser;
 
 
   useEffect(() => {

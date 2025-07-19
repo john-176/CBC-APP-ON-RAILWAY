@@ -1,19 +1,21 @@
-
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { getCSRF, showcaseAPI, currentUserChecker } from "../../api";
+import { getCSRF, showcaseAPI } from "../../api";
+import { useAuth } from "../../AuthContext";
 import "./Showcase.css";
 
 export default function Showcase() {
+  const { user } = useAuth();
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isStaff, setIsStaff] = useState(false);
   const [newImage, setNewImage] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [modalImage, setModalImage] = useState(null);
   const itemsPerPage = 3;
   const containerRef = useRef(null);
+
+  const isStaff = user?.is_staff || user?.is_superuser;
 
   const totalPages = Math.ceil(images.length / itemsPerPage);
   const paginatedImages = useMemo(() => (
@@ -24,12 +26,6 @@ export default function Showcase() {
     const fetchData = async () => {
       try {
         await getCSRF();
-        try {
-          const userResponse = await currentUserChecker.getCurrentUser();
-          setIsStaff(userResponse.data.is_staff || userResponse.data.is_superuser);
-        } catch {
-          setIsStaff(false);
-        }
         const response = await showcaseAPI.getShowcaseImages();
         setImages(response.data);
       } catch (err) {

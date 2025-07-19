@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import { videoshowcaseAPI, currentUserChecker } from "../../api";
+import { videoshowcaseAPI } from "../../api";
 import styles from "./VideoShowcase.module.css"; // ✅ CSS module
+import { useAuth } from "../../AuthContext"; // ✅ Add this
+
 
 export default function VideoShowcase() {
   const [videos, setVideos] = useState([]);
@@ -9,7 +11,6 @@ export default function VideoShowcase() {
   const [uploading, setUploading] = useState(false);
   const [deletingId, setDeletingId] = useState(null);
   const [error, setError] = useState(null);
-  const [isStaff, setIsStaff] = useState(false);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 2;
@@ -22,28 +23,24 @@ export default function VideoShowcase() {
 
   const containerRef = useRef();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        try {
-          const userRes = await currentUserChecker.getCurrentUser();
-          const user = userRes.data;
-          setIsStaff(user.is_staff || user.is_superuser);
-        } catch {
-          setIsStaff(false);
-        }
+  const { user } = useAuth();
+  const isStaff = user?.is_staff || user?.is_superuser;
 
-        const videoRes = await videoshowcaseAPI.getVideos();
-        setVideos(videoRes.data);
-      } catch (err) {
-        setError("Failed to load videos: " + (err.response?.data?.detail || err.message));
-      } finally {
-        setLoading(false);
-      }
-    };
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const videoRes = await videoshowcaseAPI.getVideos();
+      setVideos(videoRes.data);
+    } catch (err) {
+      setError("Failed to load videos: " + (err.response?.data?.detail || err.message));
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchData();
-  }, []);
+  fetchData();
+}, []);
+
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];

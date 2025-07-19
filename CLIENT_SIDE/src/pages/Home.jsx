@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/hero/Hero";
 import Showcase from "../components/showcase/Showcase";

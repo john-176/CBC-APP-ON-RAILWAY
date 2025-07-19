@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { getCSRF, youtubeAPI, currentUserChecker } from '../../api';
+import { youtubeAPI, getCurrentUser } from '../../api';
 import styles from './Gallery.module.css';
 import Showcase from '../showcase/Showcase';
 import VideoShowcase from '../videos/VideoShowcase';
@@ -26,15 +26,14 @@ const GalleryComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await getCSRF();
         const ytRes = await youtubeAPI.getVideos();
         setYoutubeVideos(ytRes.data);
 
         try {
-          const userRes = await currentUserChecker.getCurrentUser();
+          const userRes = await getCurrentUser();
           setIsStaff(userRes.data.is_staff || userRes.data.is_superuser);
         } catch {
-          setIsStaff(false);
+          setIsStaff(false); // User not logged in is OK
         }
       } catch (err) {
         console.error('Error loading YouTube videos:', err);
@@ -165,7 +164,3 @@ const GalleryComponent = () => {
 };
 
 export default GalleryComponent;
-
-
-
-

@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react';
-import { getCSRF, achieversAPI, currentUserChecker } from '../../api';
+import React, { useContext, useState, useEffect } from 'react';
+import {  achieversAPI,  } from '../../api';
 import styles from './Achievers.module.css';
+
+import  {AuthContext} from '../../AuthContext';
+
 
 const AchieversComponent = () => {
   const [achievers, setAchievers] = useState([]);
@@ -8,7 +11,12 @@ const AchieversComponent = () => {
   const [error, setError] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [currentAchievers, setCurrentAchievers] = useState(null);
-  const [isStaff, setIsStaff] = useState(false);
+
+
+  const { user, loading: authLoading } = useContext(AuthContext);
+  const isStaff = user?.is_staff || user?.is_superuser;
+
+
 
   const [formData, setFormData] = useState({
     name: '',
@@ -21,28 +29,6 @@ const AchieversComponent = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 2;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await getCSRF();
-        try {
-          const userResponse = await currentUserChecker.getCurrentUser();
-          setIsStaff(userResponse.data.is_staff || userResponse.data.is_superuser);
-        } catch {
-          setIsStaff(false);
-        }
-
-        const response = await achieversAPI.getAchievers();
-        setAchievers(response.data.results || []);
-
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -139,7 +125,7 @@ const AchieversComponent = () => {
             <p className={styles.AchieversYears}>{Achievers.years_active}</p>
             <p className={styles.AchieversBio}>{Achievers.bio}</p>
 
-            {isStaff && (
+            {(user && isStaff) (
               <div className={styles.AchieversActions}>
                 <button onClick={() => handleEdit(Achievers)} className={styles.editButton}>Edit</button>
                 <button onClick={() => handleDelete(Achievers.id)} className={styles.deleteButton}>Delete</button>
@@ -176,7 +162,7 @@ const AchieversComponent = () => {
         </div>
       </div>
 
-      {isStaff && (
+      {(user && isStaff)(
         <div className={styles.AchieversFormContainer}>
           <button
             onClick={() => setIsEditing(!isEditing)}

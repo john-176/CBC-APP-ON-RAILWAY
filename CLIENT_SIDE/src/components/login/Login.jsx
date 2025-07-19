@@ -1,5 +1,5 @@
+import React from "react";
 import { useState } from "react";
-import { login } from "../../api";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../AuthContext";
 import "./Login.css";
@@ -11,16 +11,16 @@ export default function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
-  const { setUser } = useAuth();
+  const { loginUser } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setLoading(true);
     try {
-      await login(form.username, form.password);
-      setUser("authenticated");
+      await loginUser(form.username, form.password);
       navigate("/");
     } catch (err) {
       setError(err.message || "Login failed");
@@ -79,13 +79,14 @@ export default function Login() {
         {error && <p className="login-error">{error}</p>}
 
         <div className="login-links">
-        <p><Link to="/reset-request">Forgot Password? Reset</Link></p>
-        <p>OR</p>
-        <p><Link to="/signup">Create a new account</Link></p>
+          <p><Link to="/reset-request">Forgot Password? Reset</Link></p>
+          <p>OR</p>
+          <p><Link to="/signup">Create a new account</Link></p>
         </div>
       </div>
     </div>
   );
 }
+
 
 

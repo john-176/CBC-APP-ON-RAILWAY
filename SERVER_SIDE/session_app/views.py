@@ -55,6 +55,10 @@ class AuthCheckView(APIView):
             "is_superuser": request.user.is_superuser,
         })
 
+#ensure_csrf_cookie
+@ensure_csrf_cookie
+def get_csrf(request):
+    return JsonResponse({"csrfToken": "set"})
 
 
 #Login

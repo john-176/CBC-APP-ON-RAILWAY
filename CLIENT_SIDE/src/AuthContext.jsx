@@ -1,33 +1,50 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import axios from "axios";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { getCurrentUser, login as apiLogin, logout as apiLogout } from "./api";
+import { useNavigate } from "react-router-dom";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  const checkAuth = async () => {
-    try {
-      const res = await axios.get("http://localhost:8000/api/auth-check/", { withCredentials: true });
-      setUser(res.data.user || "authenticated");  // Optional: attach actual user data
-    } catch {
-      setUser(null);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await getCurrentUser();
+        setUser(res);
+      } catch {
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     checkAuth();
   }, []);
 
+  const loginUser = async (username, password) => {
+    await apiLogin(username, password);
+    const res = await getCurrentUser();
+    setUser(res);
+  };
+
+  const logoutUser = async () => {
+    await apiLogout();
+    setUser(null);
+    navigate("/login");
+  };
+
+  const isStaff = user?.is_staff || user?.is_superuser || false;
+
   return (
-    <AuthContext.Provider value={{ user, setUser, loading }}>
+    <AuthContext.Provider value={{ user, setUser, loginUser, logoutUser, isStaff, loading }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
-export const useAuth = () => useContext(AuthContext);
+export function useAuth() {
+  return useContext(AuthContext);
+}

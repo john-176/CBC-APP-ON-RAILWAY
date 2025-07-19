@@ -1,3 +1,4 @@
+import React, {useContext, useEffect, useState }from "react";
 import Achievers from "../Achievers/Achievers";
 import "./Hero.css";
 import heroBg from "../../assets/herobg.jpg";

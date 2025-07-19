@@ -36,7 +36,6 @@ urlpatterns = [
         # JWT Auth endpoints
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    
     path('api/health/', healthcheck),
     path('api/', include('session_app.urls')),
     path('api/', include('content_app.urls')),

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getCSRF, announcementsAPI, currentUserChecker } from "../../api";
+import { announcementsAPI, getCurrentUser } from "../../api";
 import styles from "./AnnouncementCard.module.css";
 
 export default function AnnouncementCard() {
@@ -12,21 +12,17 @@ export default function AnnouncementCard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await getCSRF();
-
-        // Try to get user info, but don't block if it fails
+        // Check user role via JWT
         try {
-          const userResponse = await currentUserChecker.getCurrentUser();
+          const userResponse = await getCurrentUser();
           setIsStaff(userResponse.data.is_staff || userResponse.data.is_superuser);
-        } catch (err) {
-          // User not logged in — that's okay
-          setIsStaff(false);
+        } catch {
+          setIsStaff(false); // Not logged in is OK
         }
 
-        // Always try to get announcements
+        // Get announcements
         const response = await announcementsAPI.getAnnouncements();
         setAnnouncements(response.data);
-
       } catch (err) {
         setError(err.message || "Something went wrong");
       } finally {
@@ -36,7 +32,6 @@ export default function AnnouncementCard() {
 
     fetchData();
   }, []);
-
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this announcement?")) return;
@@ -51,7 +46,6 @@ export default function AnnouncementCard() {
   const handleAdd = async () => {
     if (!newAnnouncement.title || !newAnnouncement.message) return;
     try {
-      await getCSRF();
       const response = await announcementsAPI.createAnnouncement(newAnnouncement);
       setAnnouncements((prev) => [response.data, ...prev]);
       setNewAnnouncement({ title: "", message: "" });
